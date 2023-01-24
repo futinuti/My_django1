@@ -1,8 +1,8 @@
 from django.db.models import Q
-from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
+from django.http import HttpResponse,  HttpResponseRedirect  # HttpRequest,
 from django.middleware.csrf import get_token
-from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt
+# from django.shortcuts import render
+# from django.views.decorators.csrf import csrf_exempt
 from webargs.djangoparser import use_args
 from webargs.fields import Str
 
@@ -17,7 +17,8 @@ from .utils import format_list_students
 
 def index(request):
 
-    return HttpResponse('Welkome to lms')
+    return HttpResponse('Welcome to lms')
+
 
 @use_args(
     {
@@ -51,6 +52,7 @@ def get_students(request, args):
     string = form + format_list_students(students)
     response = HttpResponse(string)
     return response
+
 
 # @csrf_exempt
 def create_student_view(request):
