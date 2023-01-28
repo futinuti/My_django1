@@ -14,7 +14,7 @@ class Student(models.Model):
     first_name = models.CharField(max_length=50, verbose_name='First name', db_column='first name',
                                   validators=[MinLengthValidator(3)])
     last_name = models.CharField(max_length=50, verbose_name='Last name', db_column='last name')
-    age = models.PositiveIntegerField()
+    # age = models.PositiveIntegerField()
     birthday = models.DateField(default=datetime.date.today)
     city = models.CharField(max_length=25, null=True, blank=True)
     email = models.EmailField(validators=[ValidateEmailDomain(*VALID_DOMAINS), validate_unique_email])
@@ -37,5 +37,5 @@ class Student(models.Model):
             s.last_name = f.last_name()
             s.email = f'{s.first_name}.{s.last_name}@{f.random.choice(VALID_DOMAINS)}'
             s.birthday = f.date_between(start_date='-65y', end_date='-18y')
-            s.age = f.random_int(min=18, max=65)
+            s.phone = f'{f.phone_number()}'
             s.save()
