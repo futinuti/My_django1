@@ -1,5 +1,5 @@
 from django.db.models import Q
-from django.http import HttpResponse,  HttpResponseRedirect  # HttpRequest,
+from django.http import HttpResponse,  HttpResponseRedirect
 from django.middleware.csrf import get_token
 from django.shortcuts import render
 # from django.views.decorators.csrf import csrf_exempt
