@@ -25,7 +25,6 @@ class Group(models.Model):
             g = cls()
             g.group_name = f.random.choice(LANG_LIST)
             g.group_description = f.sentence()
-            # g.group_start_data = datetime.date.today()
-            g.group_start_data = f.date_between(start_date='-65y', end_date='+65y')
+            g.group_start_data = f.date_between(start_date='today', end_date='+1y')
             g.clean_fields()
             g.save()
