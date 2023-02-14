@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>LMS - {{ title }}</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}
+List of students
+{% endblock %}
+
+{% block content %}
     <form method="get">
       <label for="fname">First name:</label>
       <input type="text" id="fname" name="first_name"><br><br>
@@ -36,7 +36,6 @@
             {% endfor %}
         </tbody>
     </table>
-</body>
-</html>
+{% endblock %}
 
 

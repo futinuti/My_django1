@@ -16,8 +16,7 @@ from .models import Student
 
 
 def index(request):
-
-    return HttpResponse('Welcome to lms')
+    return render(request, 'students/index.html')
 
 
 @use_args(
@@ -49,9 +48,11 @@ def get_students(request, args):
         context={'title': 'List of students', 'students': students}
     )
 
+
 def detail_student(request, pk):
     student = Student.objects.get(pk=pk)
     return render(request, 'students/detail.html', {'title': 'Detail of student', 'student': student})
+
 
 # @csrf_exempt
 def create_student_view(request):
@@ -62,21 +63,7 @@ def create_student_view(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/students/')
-
-    token = get_token(request)
-    # form = CreateStudentForm()
-    html_form = f'''
-        <form method="post">
-            <input type="hidden" name="csrfmiddlewaretoken" value="{token}">
-            <table>
-                {form.as_table()}
-            </table>
-          <input type="submit" value="Submit"><br><br>
-          <a href="/students/">Back to list</a>
-        </form>
-    '''
-
-    return HttpResponse(html_form)
+    return render(request, 'students/create.html', {'form': form})
 
 
 def update_student(request, pk):
@@ -88,17 +75,4 @@ def update_student(request, pk):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/students/')
-
-    token = get_token(request)
-    # form = CreateStudentForm()
-    html_form = f'''
-        <form method="post">
-            <input type="hidden" name="csrfmiddlewaretoken" value="{token}">
-            <table>
-                {form.as_table()}
-            </table>
-          <input type="submit" value="Submit"><br><br>
-          <a href="/students/">Back to list</a>
-        </form>'''
-
-    return HttpResponse(html_form)
+    return render(request, 'students/update.html', {'form': form})

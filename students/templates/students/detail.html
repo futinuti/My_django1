@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>LMS - {{ title }}</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}
+Detail of student
+{% endblock %}
+
+{% block content %}
     <p>First name: {{ student.first_name }}</p>
     <p>Last name: {{ student.last_name }}</p>
     <p>Email: {{ student.email }}</p>
@@ -14,7 +14,6 @@
     <a href="/students/update/{{ student.pk }}">Edit</a>
     <br><br>
     <a href="/students/">Back to list</a>
-</body>
-</html>
+{% endblock %}
 
 
