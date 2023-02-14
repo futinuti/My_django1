@@ -76,3 +76,11 @@ def update_student(request, pk):
             form.save()
             return HttpResponseRedirect('/students/')
     return render(request, 'students/update.html', {'form': form})
+
+
+def delete_student(request, pk):
+    st = Student.objects.get(pk=pk)
+    if request.method == 'POST':
+        st.delete()
+        return HttpResponseRedirect('/students/')
+    return render(request, 'students/delete.html', {'student': st})

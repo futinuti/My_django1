@@ -6,6 +6,7 @@ from groups.views import detail_group
 from groups.views import update_group
 from groups.views import create_group_view
 from students.views import get_students
+from students.views import delete_student
 from students.views import create_student_view
 from students.views import update_student
 from students.views import detail_student
@@ -30,5 +31,6 @@ urlpatterns = [
     path('groups/update/<int:pk>/', update_group),
     path('students/detail/<int:pk>/', detail_student),
     path('teachers/detail/<int:pk>/', detail_teacher),
-    path('groups/detail/<int:pk>/', detail_group)
+    path('groups/detail/<int:pk>/', detail_group),
+    path('students/delete/<int:pk>/', delete_student)
 ]

@@ -22,16 +22,18 @@ List of students
                  <th>Last name</th>
                  <th>Phone</th>
                  <th>Update</th>
+                 <th>Delete</th>
             </tr>
         <thead>
         <tbody>
             {% for st in students %}
                 <tr>
                     <td><a href="/students/detail/{{ st.pk }}/">{{ st.first_name }}</a></td>
-                      <td>{{ st.last_name }}</td>
-{#                      <td>{% if st.city %}{{ st.city }}{% endif %}</td>#}
-                      <td>{{ st.phone }}</td>
-                      <td><a href="/students/update/{{ st.pk }}/">Edit</a></td>
+                          <td>{{ st.last_name }}</td>
+                          {#<td>{% if st.city %}{{ st.city }}{% endif %}</td>#}
+                          <td>{{ st.phone }}</td>
+                          <td><a href="/students/update/{{ st.pk }}/">Edit</a></td>
+                          <td><a href="/students/delete/{{ st.pk }}/">Delete</a></td>
                 </tr>
             {% endfor %}
         </tbody>
