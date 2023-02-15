@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Delete teacher {{ teacher.first_name }}{{ teacher.last_name }}
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+      {% csrf_token %}
+          <p>Do you really want to delete teacher <strong>{{ teacher.first_name }}{{ teacher.last_name }}</strong></p>
+          <input type="submit" value="Delete">
+          <br><br>
+          <a href="{% url 'teachers:list' %}">Back to list</a>
+        </form>
+{% endblock %}

@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>LMS - {{ title }}</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}
+List of groups
+{% endblock %}
+
+{% block content %}
     <form method="get">
           <label for="gname">Group name:</label>
           <input type="text" id="gname" name="group_name"><br><br>
@@ -13,7 +13,7 @@
           <input type="submit" value="Submit"><br>
     </form>
     <br>
-    <a href="/groups/create/">Create groups</a>
+    <a href="{% url 'groups:create' %}">Create groups</a>
     <br><br>
     <table>
         <thead>
@@ -22,20 +22,21 @@
                  <th>Group start data</th>
                  <th>Group description</th>
                  <th>Update</th>
+                 <th>Delete</th>
             </tr>
         <thead>
         <tbody>
             {% for gr in groups %}
                 <tr>
-                    <td><a href="/groups/detail/{{ gr.pk }}/">{{ gr.group_name }}</a></td>
+                    <td><a href="{% url 'groups:detail' gr.pk %}">{{ gr.group_name }}</a></td>
                     <td>{{ gr.group_start_data }}</td>
                     <td>{% if gr.group_description %}{{ gr.group_description }}{% endif %}</td>
-                    <td><a href="/groups/update/{{ gr.pk }}/">Edit</a></td>
+                    <td><a href="{% url 'groups:update' gr.pk %}">Edit</a></td>
+                    <td><a href="{% url 'groups:delete' gr.pk %}">Delete</a></td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-</body>
-</html>
+{% endblock %}
 
 

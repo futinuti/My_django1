@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>LMS - {{ title }}</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}
+List teachers
+{% endblock %}
+
+{% block content %}
     <form method="get">
       <label for="fname">First name:</label>
       <input type="text" id="fname" name="first_name"><br><br>
@@ -13,7 +13,7 @@
       <input type="submit" value="Submit"><br>
     </form>
     <br>
-    <a href="/teachers/create/">Create teacher</a>
+    <a href="{% url 'teachers:create' %}">Create teacher</a>
     <br><br>
     <table>
         <thead>
@@ -23,21 +23,22 @@
                  <th>Birthday</th>
                  <th>Salary</th>
                  <th>Update</th>
+                 <th>Delete</th>
             </tr>
         <thead>
         <tbody>
             {% for teacher in teachers %}
                 <tr>
-                    <td><a href="/teachers/detail/{{ teacher.pk }}/">{{ teacher.first_name }}</a></td>
+                    <td><a href="{% url 'teacher:detail' teacher.pk %}">{{ teacher.first_name }}</a></td>
                       <td>{{ teacher.last_name }}</td>
                       <td>{{ teacher.birthday }}</td>
                       <td>{{ teacher.salary }}</td>
-                      <td><a href="/teachers/update/{{ teacher.pk }}/">Edit</a></td>
+                      <td><a href="{% url 'teacher:update' teacher.pk %}">Edit</a></td>
+                      <td><a href="{% url 'teacher:delete' teacher.pk %}">Delete</a></td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-</body>
-</html>
+{% endblock %}
 
 
