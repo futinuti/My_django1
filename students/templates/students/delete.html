@@ -10,6 +10,6 @@ Delete student {{ student.first_name }}
           <p>Do you really want to delete student <strong>{{ student.first_name }} {{ student.last_name }} </strong></p>
           <input type="submit" value="Delete">
           <br><br>
-          <a href="/students/">Back to list</a>
+          <a href="{% url 'students:list' %}">Back to list</a>
         </form>
 {% endblock %}

@@ -11,6 +11,6 @@ Create new student
                 {{ form.as_table }}
             </table>
           <input type="submit" value="Create"><br><br>
-          <a href="/students/">Back to list</a>
+          <a href="{% url 'students:list' %}">Back to list</a>
         </form>
 {% endblock %}

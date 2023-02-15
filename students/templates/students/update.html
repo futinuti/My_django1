@@ -11,6 +11,6 @@ Update student {{ form.first_name.value }}
                 {{ form.as_table }}
             </table>
           <input type="submit" value="Update"><br><br>
-          <a href="/students/">Back to list</a>
+          <a href="{% url 'students:list' %}">Back to list</a>
         </form>
 {% endblock %}
