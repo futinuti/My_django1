@@ -5,12 +5,34 @@ Create new student
 {% endblock %}
 
 {% block content %}
-    <form method="post">
-      {% csrf_token %}
-            <table>
-                {{ form.as_table }}
-            </table>
-          <input type="submit" value="Create"><br><br>
-          <a href="{% url 'students:list' %}">Back to list</a>
-        </form>
+    <div class="row">
+        <div class="col-3"> </div>
+        <div class="col">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="floatingFirstName" placeholder="A" name="first_name">
+                  <label for="floatingFirstName">First name</label>
+                </div>
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="floatingLastName" placeholder="B" name="last_name">
+                  <label for="floatingLastName">Last name</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="date" class="form-control" id="floatingBirthday" placeholder="A" name="birthday">
+                  <label for="floatingBirthday">Birthday</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="email" class="form-control" id="floatingEmail" placeholder="A" name="email">
+                  <label for="floatingEmail">Email</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="number" class="form-control" id="floatingPhone" placeholder="A" name="phone">
+                  <label for="floatingPhone">Phone</label>
+                </div>
+              <input type="submit" class="btn btn-outline-primary mt-3" value="Create"><br>
+            </form>
+        </div>
+        <div class="col-3"> </div>
+    </div>
 {% endblock %}
