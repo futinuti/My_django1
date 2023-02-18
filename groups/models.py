@@ -4,13 +4,14 @@ from faker import Faker
 from groups.validators import validate_start_date
 
 
-LANG_LIST = ('C++/CLI', 'C#', 'Object Pascal', 'Java', 'Perl', 'PHP', 'Python', 'Ruby', 'Visual Basic')
+LANG_LIST = ('C#', 'Java', 'PHP', 'Python', 'Ruby', 'Visual Basic')
 
 
 class Group(models.Model):
     group_name = models.CharField(max_length=80, verbose_name='Group name', db_column='G_name')
     group_start_data = models.DateField(default='2023-06-24', validators=[validate_start_date])
     group_description = models.TextField(null=True, blank=True)
+
 
     class Meta:
         db_table = 'groups'

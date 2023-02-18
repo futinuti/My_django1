@@ -5,6 +5,7 @@ from django.core.validators import MinLengthValidator
 from django.db import models
 from faker import Faker
 
+from groups.models import Group
 from students.validators import ValidateEmailDomain, validate_unique_email
 
 VALID_DOMAINS = ('gmail.com', 'yahoo.com', 'test.com')
@@ -18,6 +19,7 @@ class Student(models.Model):
     birthday = models.DateField(default=datetime.date.today)
     city = models.CharField(max_length=25, null=True, blank=True)
     email = models.EmailField(validators=[ValidateEmailDomain(*VALID_DOMAINS), validate_unique_email])
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, related_name='students')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     phone = models.CharField(max_length=25, verbose_name='Phone', db_column='phone')
@@ -35,6 +37,7 @@ class Student(models.Model):
     @classmethod
     def generate_fake_data(cls, count):
         f = Faker()
+        # groups = Group.objects.all()
         for _ in range(count):
             s = cls()
             s.first_name = f.first_name()
@@ -42,4 +45,6 @@ class Student(models.Model):
             s.email = f'{s.first_name}.{s.last_name}@{f.random.choice(VALID_DOMAINS)}'
             s.birthday = f.date_between(start_date='-65y', end_date='-18y')
             s.phone = f'{f.phone_number()}'
+            # group = f.random.choice(groups)
+            # s.group = group
             s.save()
