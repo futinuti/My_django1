@@ -1,4 +1,5 @@
 from django import forms
+from django_filters import FilterSet
 
 from students.models import Student
 
@@ -18,6 +19,14 @@ class CreateStudentForm(forms.ModelForm):
             'birthday': forms.DateInput(attrs={'type': 'date'})
         }
 
+
+class StudentFilterForm(FilterSet):
+    class Meta:
+        model = Student
+        fields = {
+            'first_name': ['exact', 'contains'],
+            'last_name': ['exact', 'startswith']
+        }
 
     def clean_first_name(self):
         value = self.cleaned_data.get('first_name')

@@ -40,9 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django_extensions',
+    "crispy_forms",
+    "crispy_bootstrap5",
+    'django_filters',
 
     'students.apps.StudentsConfig',
-
     'groups.apps.GroupsConfig',
     'teachers.apps.TeachersConfig'
 ]
@@ -133,3 +135,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 if DEBUG:
     SHELL_PLUS = 'ipython'
     SHELL_PLUS_PRINT_SQL = True
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+
