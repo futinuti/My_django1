@@ -37,7 +37,7 @@ class Student(models.Model):
     @classmethod
     def generate_fake_data(cls, count):
         f = Faker()
-        # groups = Group.objects.all()
+        groups = Group.objects.all()
         for _ in range(count):
             s = cls()
             s.first_name = f.first_name()
@@ -45,6 +45,6 @@ class Student(models.Model):
             s.email = f'{s.first_name}.{s.last_name}@{f.random.choice(VALID_DOMAINS)}'
             s.birthday = f.date_between(start_date='-65y', end_date='-18y')
             s.phone = f'{f.phone_number()}'
-            # group = f.random.choice(groups)
-            # s.group = group
+            group = f.random.choice(groups)
+            s.group = group
             s.save()

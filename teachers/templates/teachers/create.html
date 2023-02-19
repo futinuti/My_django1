@@ -1,37 +1,27 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_filters %}
+
 {% block title %}
 Create teacher
 {% endblock %}
 
 {% block content %}
 <form method="post">
-    {% csrf_token %}
     <div class="row">
-        <div class="col-3"> </div>
+        <div class="col-3"></div>
         <div class="col">
             <form method="post">
                 {% csrf_token %}
-                <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="floatingFirstName" placeholder="A" name="first_name">
-                  <label for="floatingFirstName">First name</label>
-                </div>
-                <div class="form-floating">
-                  <input type="text" class="form-control" id="floatingLastName" placeholder="B" name="last_name">
-                  <label for="floatingLastName">Last name</label>
-                </div>
-                <div class="form-floating mb-3">
-                  <input type="date" class="form-control" id="floatingBirthday" placeholder="A" name="birthday">
-                  <label for="floatingBirthday">Birthday</label>
-                </div>
-                <div class="form-floating mb-3">
-                  <input type="number" class="form-control" id="floatingSalary" placeholder="A" name="salary">
-                  <label for="floatingSalary">Phone</label>
-                </div>
-              <input type="submit" class="btn btn-outline-primary mt-3" value="Create"><br>
+                {{ form|crispy }}
+                    <div class="text-center">
+                        <input type="submit" class="btn btn-outline-primary" value="Create">
+                        <a class="btn btn-outline-primary" href="{% url 'teachers:list' %}">Back to list</a>
+                    </div>
+                <input type="submit" class="btn btn-outline-primary mt-3" value="Create"><br>
             </form>
         </div>
-        <div class="col-3"> </div>
+        <div class="col-3"></div>
     </div>
 
 {% endblock %}

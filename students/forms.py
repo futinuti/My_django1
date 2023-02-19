@@ -19,15 +19,6 @@ class CreateStudentForm(forms.ModelForm):
             'birthday': forms.DateInput(attrs={'type': 'date'})
         }
 
-
-class StudentFilterForm(FilterSet):
-    class Meta:
-        model = Student
-        fields = {
-            'first_name': ['exact', 'contains'],
-            'last_name': ['exact', 'startswith']
-        }
-
     def clean_first_name(self):
         value = self.cleaned_data.get('first_name')
         return value.capitalize()
@@ -39,6 +30,15 @@ class StudentFilterForm(FilterSet):
         cleaned_phone = f'+{kod_country} ({cleaned_phone[-10:-7:1]}) {cleaned_phone[-7:-4:1]}-' \
                         f'{cleaned_phone[-4:-2:1]}-{cleaned_phone[-2::1]}'
         return cleaned_phone
+
+
+class StudentFilterForm(FilterSet):
+    class Meta:
+        model = Student
+        fields = {
+            'first_name': ['exact', 'contains'],
+            'last_name': ['exact', 'startswith']
+        }
 
 
 class UpdateStudentForm(forms.ModelForm):
@@ -55,7 +55,3 @@ class UpdateStudentForm(forms.ModelForm):
         widgets = {
             'birthday': forms.DateInput(attrs={'type': 'date'})
         }
-
-    def clean_first_name(self):
-        value = self.cleaned_data.get('first_name')
-        return value.capitalize()
