@@ -46,7 +46,7 @@ def create_teacher_view(request):
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('teachers:list'))
-    return render(request, 'teachers/crete.html', {'form': form})
+    return render(request, 'teachers/create.html', {'form': form})
 
 
 def update_teacher(request, pk):

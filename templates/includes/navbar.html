@@ -9,9 +9,6 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
           </li>
-<!--          <li class="nav-item">-->
-<!--            <a class="nav-link" href="#">Link</a>-->
-<!--          </li>-->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Student
@@ -26,6 +23,24 @@
 <!--          <li class="nav-item">-->
 <!--            <a class="nav-link disabled">Disabled</a>-->
 <!--          </li>-->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Group
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'groups:list' %}">List</a></li>
+              <li><a class="dropdown-item" href="{% url 'groups:create' %}">Create</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Teachers
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'teachers:list' %}">List</a></li>
+              <li><a class="dropdown-item" href="{% url 'teachers:create' %}">Create</a></li>
+            </ul>
+          </li>
         </ul>
         <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
