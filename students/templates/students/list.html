@@ -6,17 +6,14 @@
 List of students
 {% endblock %}
 
-{% block custom_css %}
-
-{% endblock %}
-
 {% block content %}
 <div class="row">
     <div class="col-3"></div>
     <div class="accordion" id="accordionExample">
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne"
                         aria-expanded="true" aria-controls="collapseOne">
                     Search
                 </button>
@@ -24,14 +21,12 @@ List of students
             <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
                  data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-
                     <div class="col">
                         <form method="get">
                             {{ filter_form.form|crispy }}
                             <input type="submit" class="btn btn-outline-primary mt-3" value="Search"><br>
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -39,7 +34,6 @@ List of students
     <div class="col-3"></div>
 </div>
 <div class="row">
-
     <table class="table table-striped table-hover">
         <thead>
         <tr class="text-center">
@@ -68,5 +62,3 @@ List of students
     </table>
 </div>
 {% endblock %}
-
-
