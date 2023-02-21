@@ -6,6 +6,7 @@ from core.views import index
 
 
 urlpatterns = [
+    path('__debug__/', include('debug_toolbar.urls')),
     path('admin/', admin.site.urls),
     path('', index, name='home'),
     path('students/', include('students.urls')),
