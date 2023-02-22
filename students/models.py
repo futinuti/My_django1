@@ -45,6 +45,5 @@ class Student(models.Model):
             s.email = f'{s.first_name}.{s.last_name}@{f.random.choice(VALID_DOMAINS)}'
             s.birthday = f.date_between(start_date='-65y', end_date='-18y')
             s.phone = f'{f.phone_number()}'
-            group = f.random.choice(groups)
-            s.group = group
+            s.group = f.random.choice(groups)
             s.save()

@@ -16,7 +16,7 @@ from .models import Student
 #     location='query'
 # )
 def get_students(request):
-    students = Student.objects.all().order_by('birthday')
+    students = Student.objects.all().order_by('birthday').select_related('group')
 
     filter_form = StudentFilterForm(data=request.GET, queryset=students)
 
