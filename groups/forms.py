@@ -49,11 +49,11 @@ class CreateGroupForm(GroupBaseForm):
     # переопределить конструктор
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['students'].queryset = Student.objects.filter(group__isnull=True)
+        self.fields['students'].queryset = Student.objects.all().select_related('group')
+    # filter(group__isnull=True)
 
     class Meta(GroupBaseForm.Meta):
         pass
-
 
 
 class UpdateGroupForm(GroupBaseForm):
@@ -69,7 +69,7 @@ class UpdateGroupForm(GroupBaseForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['students'].queryset = Student.objects.all()
+        self.fields['students'].queryset = Student.objects.all().select_related('group')
 
     class Meta(GroupBaseForm.Meta):
         exclude = [
