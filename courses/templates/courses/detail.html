@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Detail of group
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col"></div>
+    <div class="col align-self-center">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ group.group_name }}</h5>
+                <p class="card-text">{{ group.group_start_data|date:"d M Y" }}</p>
+                <h6 class="card-subtitle mb-2 text-muted">Description:</h6>
+                {% if group.group_description %}<p class="card-text">{{ group.group_description }}</p>{% endif %}
+                {% if not group.group_description %}<p class="card-text">Empty</p>{% endif %}
+                <div class="text-center">
+                    <a class="btn btn-outline-primary" href="{% url 'groups:update' group.pk %}">Edit</a>
+                    <a class="btn btn-outline-primary" href="{% url 'groups:list' %}">Back to list</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col"></div>
+</div>
+{% endblock %}
+
+
