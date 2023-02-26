@@ -50,9 +50,9 @@ List of groups
         {% for group in filter_form.qs %}
         <tr class="text-center">
             <td>{{ forloop.counter }}</td>
-            <td><a href="{% url 'groups:detail' group.pk %}">{{ group.group_name }}</a></td>
-            <td>{{ group.group_start_data }}</td>
-            <td>{{ group.group_description }}</td>
+            <td><a href="{% url 'groups:detail' group.pk %}">{{ group.name }}</a></td>
+            <td>{{ group.start_data }}</td>
+            <td>{{ group.description }}</td>
             <td>{% if group.headman %}
             {{ group.headman.first_name }} {{ group.headman.last_name }}
             {% endif %}</td>

@@ -38,26 +38,26 @@ List of groups
         <thead>
         <tr class="text-center">
             <th>#</th>
-            <th>Group name</th>
+            <th>Course name</th>
             <th>Start data</th>
             <th>Description</th>
-            <th>Headman</th>
+            <th>Group</th>
             <th><i class="bi bi-pencil-fill"></i></th>
             <th><i class="bi bi-trash3-fill"></i></th>
         </tr>
         <thead>
         <tbody>
-        {% for group in filter_form.qs %}
+        {% for course in filter_form.qs %}
         <tr class="text-center">
             <td>{{ forloop.counter }}</td>
-            <td><a href="{% url 'groups:detail' group.pk %}">{{ group.group_name }}</a></td>
-            <td>{{ group.group_start_data }}</td>
-            <td>{{ group.group_description }}</td>
-            <td>{% if group.headman %}
-            {{ group.headman.first_name }} {{ group.headman.last_name }}
+            <td><a href="{% url 'courses:detail' course.pk %}">{{ course.name }}</a></td>
+            <td>{{ course.start_data }}</td>
+            <td>{{ course.description }}</td>
+            <td>{% if course.group %}
+            {{ course.group_name }}
             {% endif %}</td>
-            <td><a class="btn btn-outline-primary btn-sm" href="{% url 'groups:update' group.pk %}">Edit</a></td>
-            <td><a class="btn btn-outline-danger btn-sm" href="{% url 'groups:delete' group.pk %}">Delete</a></td>
+            <td><a class="btn btn-outline-primary btn-sm" href="{% url 'courses:update' course.pk %}">Edit</a></td>
+            <td><a class="btn btn-outline-danger btn-sm" href="{% url 'courses:delete' course.pk %}">Delete</a></td>
         </tr>
         {% endfor %}
         </tbody>

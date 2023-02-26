@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Delete group {{ group.group_name }}
+Delete group {{ group.name }}
 {% endblock %}
 
 {% block content %}
@@ -11,7 +11,7 @@ Delete group {{ group.group_name }}
             <form method="post">
                 {% csrf_token %}
                 <div class="text-center">
-                    <p>Do you really want to delete group <strong>{{ group.group_name }}</strong></p>
+                    <p>Do you really want to delete group <strong>{{ group.name }}</strong></p>
                     <input class="btn btn-outline-primary" type="submit" value="Agree">
                     <a class="btn btn-outline-primary" href="{% url 'groups:list' %}">Back to list</a>
                 </div>

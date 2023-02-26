@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.views.generic import UpdateView, CreateView
 
 from groups.forms import CreateGroupForm
 from groups.forms import UpdateGroupForm
@@ -10,7 +11,7 @@ from students.models import Student
 
 
 def get_groups(request):
-    groups = Group.objects.all().order_by('group_start_data')
+    groups = Group.objects.all().order_by('start_data')
 
     filter_form = GroupFilterForm(data=request.GET, queryset=groups)
 
@@ -23,10 +24,16 @@ def get_groups(request):
 
 def detail_group(request, pk):
     group = get_object_or_404(Group, pk=pk)
-    return render(request, 'groups/detail.html', {'title': 'Detail of group', 'group': group})
+    return render(request, 'groups/detail.html', {'group': group})
 
 
-# @csrf_exempt
+class CreateGroupView(CreateView):
+    model = Group
+    form_class = CreateGroupForm
+    success_url = reverse_lazy('groups:list')
+    template_name = 'groups/create.html'
+
+
 def create_group_view(request):
     if request.method == 'GET':
         form = CreateGroupForm()

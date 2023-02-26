@@ -55,6 +55,7 @@ class CustomUpdateStudentView(CustomUpdateBaseView):
     success_url = 'students:list'
     template_name = 'students/update.html'
 
+
 class UpdateStudentView(UpdateView):
     model = Student
     form_class = UpdateStudentForm
