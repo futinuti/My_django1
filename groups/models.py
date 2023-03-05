@@ -14,7 +14,7 @@ class Group(LessonModel):
         db_table = 'groups'
 
     def __str__(self):
-        return f'{self.name} {self.start_data} {self.headman}'
+        return f'{self.name}'
 
     @classmethod
     def generate_fake_date(cls):
