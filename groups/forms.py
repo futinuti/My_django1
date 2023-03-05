@@ -20,8 +20,9 @@ class GroupBaseForm(forms.ModelForm):
         fields = '__all__'
 
         widgets = {
-            'group_start_data': forms.DateInput(attrs={'type': 'date'})
+            'start_data': forms.DateInput(attrs={'type': 'date'})
         }
+
 
 class CreateGroupForm(GroupBaseForm):
     # дополнительное поле со списком студентов. множественный выбор с контр
@@ -73,8 +74,8 @@ class UpdateGroupForm(GroupBaseForm):
 
     class Meta(GroupBaseForm.Meta):
         exclude = [
-            'group_start_data',
-            'group_description'
+            'start_data',
+            'description'
         ]
         # model = Group
         # fields = [
@@ -88,11 +89,10 @@ class UpdateGroupForm(GroupBaseForm):
         # }
 
 
-
 class GroupFilterForm(FilterSet):
     class Meta:
         model = Group
         fields = {
-            'group_name': ['contains'],
-            'group_start_data': ['exact']
+            'name': ['contains'],
+            'start_data': ['exact']
         }

@@ -47,3 +47,12 @@ class PersonModel(BaseModel):
     def generator(cls, cnt):
         for _ in range(cnt):
             cls._generate()
+
+
+class LessonModel(BaseModel):
+    name = models.CharField(max_length=80, verbose_name='name', db_column='name')
+    start_data = models.DateField(default='2023-06-24')
+    description = models.TextField(null=True, blank=True)
+
+    class Meta:
+        abstract = True

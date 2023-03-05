@@ -3,7 +3,7 @@
 {% load crispy_forms_filters %}
 
 {% block title %}
-Update group {{ form.name.value }}
+Update group {{ form.group_name.value }}
 {% endblock %}
 
 {% block content %}
@@ -20,10 +20,5 @@ Update group {{ form.name.value }}
         </form>
     </div>
     <div class="col-3"></div>
-</div>
-<div class="row">
-    {% with object_list=group.students.all is_group=True %}
-        {% include 'includes/students_table.html' %}
-    {% endwith %}
 </div>
 {% endblock %}

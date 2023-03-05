@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.views.generic import UpdateView
 
 from teachers.forms import CreateTeacherForm
 from teachers.forms import TeacherFilterForm
@@ -36,16 +37,23 @@ def create_teacher_view(request):
     return render(request, 'teachers/create.html', {'form': form})
 
 
-def update_teacher(request, pk):
-    teacher = get_object_or_404(Teacher, pk=pk)
-    if request.method == 'GET':
-        form = UpdateTeacherForm(instance=teacher)
-    elif request.method == 'POST':
-        form = UpdateTeacherForm(request.POST, instance=teacher)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('teachers:list'))
-    return render(request, 'teachers/update.html', {'form': form})
+class UpdateTeacherView(UpdateView):
+    model = Teacher
+    form_class = UpdateTeacherForm
+    success_url = reverse_lazy('teachers:list')
+    template_name = 'teachers/update.html'
+
+
+# def update_teacher(request, pk):
+#     teacher = get_object_or_404(Teacher, pk=pk)
+#     if request.method == 'GET':
+#         form = UpdateTeacherForm(instance=teacher)
+#     elif request.method == 'POST':
+#         form = UpdateTeacherForm(request.POST, instance=teacher)
+#         if form.is_valid():
+#             form.save()
+#             return HttpResponseRedirect(reverse('teachers:list'))
+#     return render(request, 'teachers/update.html', {'form': form})
 
 
 def delete_teacher(request, pk):
