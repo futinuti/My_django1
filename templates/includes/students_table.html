@@ -24,10 +24,10 @@
                 {% if st.headman_group %}
                 <i class="bi bi-check2-circle"></i>{% endif %}</td>
             {% if not is_group %}
-                <td>{{ st.group.group_name }}</td>
+                <td>{{ st.group.name }}</td>{% endif %}
                 <td><a class="btn btn-outline-primary btn-sm" href="{% url 'students:update' st.pk %}">Edit</a></td>
                 <td><a class="btn btn-outline-danger btn-sm" href="{% url 'students:delete' st.pk %}">Delete</a></td>
-            {% endif %}
+
         </tr>
     {% endfor %}
     </tbody>
