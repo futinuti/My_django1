@@ -23,7 +23,7 @@ List of groups
                 <div class="accordion-body">
                     <div class="col">
                         <form method="get">
-                            {{ filter_form.form|crispy }}
+                            {{ object_list.form|crispy }}
                             <input type="submit" class="btn btn-outline-primary mt-3" value="Search"><br>
                         </form>
                     </div>
@@ -47,14 +47,14 @@ List of groups
         </tr>
         <thead>
         <tbody>
-        {% for course in filter_form.qs %}
+        {% for course in object_list.qs %}
         <tr class="text-center">
             <td>{{ forloop.counter }}</td>
             <td><a href="{% url 'courses:detail' course.pk %}">{{ course.name }}</a></td>
             <td>{{ course.start_data }}</td>
             <td>{{ course.description }}</td>
-            <td>{% if course.group %}
-            {{ course.group_name }}
+            <td>{% if course.groups_link %}
+            {{ course.groups_link.name }}
             {% endif %}</td>
             <td><a class="btn btn-outline-primary btn-sm" href="{% url 'courses:update' course.pk %}">Edit</a></td>
             <td><a class="btn btn-outline-danger btn-sm" href="{% url 'courses:delete' course.pk %}">Delete</a></td>

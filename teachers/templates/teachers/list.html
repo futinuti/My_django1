@@ -22,7 +22,7 @@ List teachers
                 <div class="accordion-body">
                     <div class="col">
                         <form method="get">
-                            {{ filter_form.form|crispy }}
+                            {{ object_list.form|crispy }}
                             <input type="submit" class="btn btn-outline-primary mt-3" value="Search"><br>
                         </form>
                     </div>
@@ -46,7 +46,7 @@ List teachers
             </tr>
         <thead>
         <tbody>
-            {% for teacher in filter_form.qs %}
+            {% for teacher in object_list.qs %}
                 <tr class="text-center">
                     <td>{{ forloop.counter }}</td>
                     <td><a href="{% url 'teachers:detail' teacher.pk %}">{{ teacher.first_name }}</a></td>
