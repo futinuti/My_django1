@@ -155,3 +155,6 @@ if DEBUG:
 
 LOGIN_REDIRECT_URL = reverse_lazy('students:list')
 LOGOUT_REDIRECT_URL = reverse_lazy('home')
+
+EMAIL_PORT = 1025
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
