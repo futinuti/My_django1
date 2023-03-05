@@ -6,9 +6,6 @@ from teachers.models import Teacher
 
 
 class Group(LessonModel):
-    # group_name = models.CharField(max_length=80, verbose_name='Group name', db_column='G_name')
-    # group_start_data = models.DateField(default='2023-06-24', validators=[validate_start_date])
-    # group_description = models.TextField(null=True, blank=True)
     headman = models.OneToOneField(
         'students.Student', on_delete=models.SET_NULL, null=True, blank=True, related_name='headman_group')
     teachers = models.ManyToManyField(to=Teacher, blank=True, related_name='groups')
@@ -17,7 +14,7 @@ class Group(LessonModel):
         db_table = 'groups'
 
     def __str__(self):
-        return f'{self.name} {self.start_data}'
+        return f'{self.name} {self.start_data} {self.headman}'
 
     @classmethod
     def generate_fake_date(cls):
