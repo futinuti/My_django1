@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView
 from django.views.generic import CreateView
@@ -21,12 +22,8 @@ class ListGroupView(ListView):
         filter_form = GroupFilterForm(data=self.request.GET, queryset=groups)
         return filter_form
 
-# def detail_group(request, pk):
-#     group = get_object_or_404(Group, pk=pk)
-#     return render(request, 'groups/detail.html', {'group': group})
 
-
-class CreateGroupView(CreateView):
+class CreateGroupView(LoginRequiredMixin, CreateView):
     model = Group
     form_class = CreateGroupForm
     success_url = reverse_lazy('groups:list')
@@ -39,21 +36,18 @@ class CreateGroupView(CreateView):
         students = form.cleaned_data['students']
         for student in students:
             student.group = new_group
-            print(student.group)
 
             if hasattr(student, 'headman_group'):
                 group = student.headman_group
-                print(group)
                 group.headman = None
                 group.save()
-                print(group)
 
             student.save()
 
         return response
 
 
-class UpdateGroupView(UpdateView):
+class UpdateGroupView(LoginRequiredMixin, UpdateView):
     model = Group
     form_class = UpdateGroupForm
     success_url = reverse_lazy('groups:list')
@@ -90,13 +84,13 @@ class UpdateGroupView(UpdateView):
         return response
 
 
-class DeleteGroupView(DeleteView):
+class DeleteGroupView(LoginRequiredMixin, DeleteView):
     model = Group
     success_url = reverse_lazy('groups:list')
     template_name = 'groups/delete.html'
 
 
-class DetailGroupView(DetailView):
+class DetailGroupView(LoginRequiredMixin, DetailView):
     model = Group
     success_url = reverse_lazy('groups:list')
     template_name = 'groups/detail.html'
