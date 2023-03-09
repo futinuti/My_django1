@@ -16,7 +16,10 @@ class Teacher(PersonModel):
         db_table = 'teachers'
 
     def __str__(self):
-        return f'{self.first_name} {self.last_name} (${self.salary}'
+        return f'{self.first_name} {self.last_name} (${self.salary})'
+
+    def get_salary(self):
+        return f'{self.salary}'
 
     @classmethod
     def _generate(cls):

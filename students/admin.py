@@ -43,12 +43,6 @@ class StudentAdmin(admin.ModelAdmin):
             return '-----'
 
     get_group_info.short_description = 'group'
-    # fields = (
-    #     ('first_name', 'last_name'),
-    #     ('birthday', 'get_age'),
-    #     ('email', 'city'),
-    #     'group',
-    # )
 
     fieldsets = (
         ('Personal info', {'fields': (('first_name', 'last_name'),)}),
