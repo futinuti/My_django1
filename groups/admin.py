@@ -2,6 +2,7 @@ from django import forms
 from django.contrib import admin
 
 from groups.models import Group
+from teachers.admin import TeachersInLine
 
 
 class StudentsInlineTable(admin.TabularInline):
@@ -35,7 +36,7 @@ class GroupAdminForm(forms.ModelForm):
         fields = '__all__'
 
 
-@admin.register(Group)
+# @admin.register(Group)
 class GroupAdmin(admin.ModelAdmin):
     form = GroupAdminForm
     list_display = ('name', 'start_data')
@@ -43,9 +44,13 @@ class GroupAdmin(admin.ModelAdmin):
         'name',
         'start_data',
         'headman',
-        'teachers',
+        # 'teachers',
         ('created', 'updated'),
     )
 
     readonly_fields = ('created', 'updated')
-    inlines = [StudentsInlineTable, ]
+    inlines = [StudentsInlineTable, TeachersInLine]
+    exclude = ('teachers',)
+
+
+admin.site.register(Group, GroupAdmin)

@@ -1,5 +1,6 @@
 import datetime
 
+from dateutil.relativedelta import relativedelta
 from django.db import models
 from faker import Faker
 
@@ -24,6 +25,15 @@ class PersonModel(BaseModel):
 
     class Meta:
         abstract = True
+
+    def get_first_name(self):
+        return f'{self.first_name}'
+
+    def get_last_name(self):
+        return f'{self.last_name}'
+
+    def get_age(self):
+        return relativedelta(datetime.date.today(), self.birthday).years
 
     @classmethod
     def _generate(cls):

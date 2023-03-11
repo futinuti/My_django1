@@ -21,10 +21,6 @@ class Student(PersonModel):
         else:
             return f'{self.first_name} {self.last_name} ( )'
 
-    def get_age(self):
-        return relativedelta(datetime.date.today(), self.birthday).years
-
-
     # @classmethod
     # def generate_fake_data(cls, count):
     #     domain = ('gmail.com', 'yahoo.com', 'test.com')
