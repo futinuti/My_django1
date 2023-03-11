@@ -62,7 +62,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'core.middleware.DurationRequestProcessMiddleware',
+    'core.middleware.MyMiddleware',
 ]
 
 ROOT_URLCONF = 'lms.urls'
@@ -154,7 +156,7 @@ if DEBUG:
     INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["127.0.0.1", "10.0.2.2"]
 
 LOGIN_REDIRECT_URL = reverse_lazy('students:list')
-LOGOUT_REDIRECT_URL = reverse_lazy('home')
+# LOGOUT_REDIRECT_URL = reverse_lazy('home')
 
 EMAIL_PORT = 1025
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
