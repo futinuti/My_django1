@@ -18,6 +18,8 @@
                 <li class="page-item"><a class="page-link active">{{ num }}</a></li>
             {% elif num > page_obj.number|add:-3 and num < page_obj.number|add:3 %}
                 <li class="page-item"><a class="page-link" href="?page={{ num }}{{ params }}">{{ num }}</a></li>
+            {% elif num > page_obj.has_next|add:-5 and num < page_obj.has_next|add:5 %}
+                <li class="page-item"><a class="page-link" href="?page={{ num }}{{ params }}">{{ num }}</a></li>
             {% endif %}
         {% endfor %}
 
