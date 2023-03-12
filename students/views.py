@@ -14,7 +14,7 @@ from .models import Student
 class ListStudentView(ListView):
     model = Student
     template_name = 'students/list.html'
-    paginate_by = 12
+    paginate_by = 10
 
     def get_filter(self):
         students = Student.objects.all().order_by('birthday').select_related('group', 'headman_group')
