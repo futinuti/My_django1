@@ -1,7 +1,7 @@
-import datetime
 
-from dateutil.relativedelta import relativedelta
 from django.db import models
+from django.db.models.signals import pre_init, post_save, pre_save, post_init
+from django.dispatch import receiver
 from faker import Faker
 
 from core.models import PersonModel
@@ -36,7 +36,6 @@ class Student(PersonModel):
     #         s.group = f.random.choice(groups)
     #         s.save()
 
-
     @classmethod
     def _generate(cls):
         f = Faker()
@@ -45,3 +44,23 @@ class Student(PersonModel):
         students.phone = f.phone_number()
         students.group = f.random.choice(groups)
         students.save()
+
+
+@receiver(pre_init, sender=Student)
+def pre_init_signal(sender, **kwargs):
+    print(f'PRE INIT: {kwargs}')
+
+
+@receiver(post_init, sender=Student)
+def post_init_signal(sender, **kwargs):
+    print(f'POST INIT: {kwargs}')
+
+
+@receiver(pre_save, sender=Student)
+def pre_save_signal(sender, **kwargs):
+    print(f'PRE SAVE: {kwargs}')
+
+
+@receiver(post_save, sender=Student)
+def post_save_signal(sender, **kwargs):
+    print(f'POST SAVE: {kwargs}')
