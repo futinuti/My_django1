@@ -18,7 +18,7 @@
     <tbody>
     {% for st in object_list %}
         <tr class="text-center">
-            <td>{{ forloop.counter }}</td>
+            <td>{{ forloop.counter0|add:page_obj.start_index }}</td>
             <td>{% if user.is_authenticated %}<a href="{% url 'students:detail' st.pk %}">{% endif %}
             {{ st.first_name }}</a></td>
             <td>{{ st.last_name }}</td>
